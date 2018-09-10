@@ -123,6 +123,7 @@ const configurationValueWhitelist = [
 	'editor.suggestOnTriggerCharacters',
 	'editor.acceptSuggestionOnEnter',
 	'editor.acceptSuggestionOnCommitCharacter',
+	'editor.extraSuggestionCommitCharacters',
 	'editor.snippetSuggestions',
 	'editor.emptySelectionClipboard',
 	'editor.wordBasedSuggestions',

@@ -594,6 +594,11 @@ export interface IEditorOptions {
 	 */
 	acceptSuggestionOnCommitCharacter?: boolean;
 	/**
+	 * Extra suggestion characters.
+	 * Defaults to ' .,()<>{}[];:+*-/=!?_\\|"\'`'.
+	 */
+	extraSuggestionCommitCharacters?: string;
+	/**
 	 * Enable snippet suggestions. Default to 'true'.
 	 */
 	snippetSuggestions?: 'top' | 'bottom' | 'inline' | 'none';
@@ -612,7 +617,7 @@ export interface IEditorOptions {
 	/**
 	 * The history mode for suggestions.
 	 */
-	suggestSelection?: 'first' | 'recentlyUsed' | 'recentlyUsedByPrefix';
+	suggestSelection?: 'off' | 'first' | 'recentlyUsed' | 'recentlyUsedByPrefix';
 	/**
 	 * The font size for the suggest widget.
 	 * Defaults to the editor font size.
@@ -1038,8 +1043,9 @@ export interface EditorContribOptions {
 	readonly suggestOnTriggerCharacters: boolean;
 	readonly acceptSuggestionOnEnter: 'on' | 'smart' | 'off';
 	readonly acceptSuggestionOnCommitCharacter: boolean;
+	readonly extraSuggestionCommitCharacters: string;
 	readonly wordBasedSuggestions: boolean;
-	readonly suggestSelection: 'first' | 'recentlyUsed' | 'recentlyUsedByPrefix';
+	readonly suggestSelection: 'off' | 'first' | 'recentlyUsed' | 'recentlyUsedByPrefix';
 	readonly suggestFontSize: number;
 	readonly suggestLineHeight: number;
 	readonly tabCompletion: 'on' | 'off' | 'onlySnippets';
@@ -1472,6 +1478,7 @@ export class InternalEditorOptions {
 			&& a.suggestOnTriggerCharacters === b.suggestOnTriggerCharacters
 			&& a.acceptSuggestionOnEnter === b.acceptSuggestionOnEnter
 			&& a.acceptSuggestionOnCommitCharacter === b.acceptSuggestionOnCommitCharacter
+			&& a.extraSuggestionCommitCharacters === b.extraSuggestionCommitCharacters
 			&& a.wordBasedSuggestions === b.wordBasedSuggestions
 			&& a.suggestSelection === b.suggestSelection
 			&& a.suggestFontSize === b.suggestFontSize
@@ -2130,8 +2137,9 @@ export class EditorOptionsValidator {
 			suggestOnTriggerCharacters: _boolean(opts.suggestOnTriggerCharacters, defaults.suggestOnTriggerCharacters),
 			acceptSuggestionOnEnter: _stringSet<'on' | 'smart' | 'off'>(opts.acceptSuggestionOnEnter, defaults.acceptSuggestionOnEnter, ['on', 'smart', 'off']),
 			acceptSuggestionOnCommitCharacter: _boolean(opts.acceptSuggestionOnCommitCharacter, defaults.acceptSuggestionOnCommitCharacter),
+			extraSuggestionCommitCharacters: _string(opts.extraSuggestionCommitCharacters, defaults.extraSuggestionCommitCharacters),
 			wordBasedSuggestions: _boolean(opts.wordBasedSuggestions, defaults.wordBasedSuggestions),
-			suggestSelection: _stringSet<'first' | 'recentlyUsed' | 'recentlyUsedByPrefix'>(opts.suggestSelection, defaults.suggestSelection, ['first', 'recentlyUsed', 'recentlyUsedByPrefix']),
+			suggestSelection: _stringSet<'off' | 'first' | 'recentlyUsed' | 'recentlyUsedByPrefix'>(opts.suggestSelection, defaults.suggestSelection, ['off', 'first', 'recentlyUsed', 'recentlyUsedByPrefix']),
 			suggestFontSize: _clampedInt(opts.suggestFontSize, defaults.suggestFontSize, 0, 1000),
 			suggestLineHeight: _clampedInt(opts.suggestLineHeight, defaults.suggestLineHeight, 0, 1000),
 			tabCompletion: this._sanitizeTabCompletionOpts(opts.tabCompletion, defaults.tabCompletion),
@@ -2245,6 +2253,7 @@ export class InternalEditorOptionsFactory {
 				suggestOnTriggerCharacters: opts.contribInfo.suggestOnTriggerCharacters,
 				acceptSuggestionOnEnter: opts.contribInfo.acceptSuggestionOnEnter,
 				acceptSuggestionOnCommitCharacter: opts.contribInfo.acceptSuggestionOnCommitCharacter,
+				extraSuggestionCommitCharacters: opts.contribInfo.extraSuggestionCommitCharacters,
 				wordBasedSuggestions: opts.contribInfo.wordBasedSuggestions,
 				suggestSelection: opts.contribInfo.suggestSelection,
 				suggestFontSize: opts.contribInfo.suggestFontSize,
@@ -2733,6 +2742,7 @@ export const EDITOR_DEFAULTS: IValidatedEditorOptions = {
 		suggestOnTriggerCharacters: true,
 		acceptSuggestionOnEnter: 'on',
 		acceptSuggestionOnCommitCharacter: true,
+		extraSuggestionCommitCharacters: ' .,()<>{}[];:+*-/=!?_\\|"\'`',
 		wordBasedSuggestions: true,
 		suggestSelection: 'recentlyUsed',
 		suggestFontSize: 0,

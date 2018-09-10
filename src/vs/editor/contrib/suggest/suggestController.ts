@@ -501,7 +501,7 @@ registerEditorCommand(new SuggestCommand({
 
 registerEditorCommand(new SuggestCommand({
 	id: 'selectNextSuggestion',
-	precondition: ContextKeyExpr.and(SuggestContext.Visible, SuggestContext.MultipleSuggestions),
+	precondition: ContextKeyExpr.and(SuggestContext.Visible),
 	handler: c => c.selectNextSuggestion(),
 	kbOpts: {
 		weight: weight,
@@ -526,13 +526,13 @@ registerEditorCommand(new SuggestCommand({
 
 registerEditorCommand(new SuggestCommand({
 	id: 'selectLastSuggestion',
-	precondition: ContextKeyExpr.and(SuggestContext.Visible, SuggestContext.MultipleSuggestions),
+	precondition: ContextKeyExpr.and(SuggestContext.Visible),
 	handler: c => c.selectLastSuggestion()
 }));
 
 registerEditorCommand(new SuggestCommand({
 	id: 'selectPrevSuggestion',
-	precondition: ContextKeyExpr.and(SuggestContext.Visible, SuggestContext.MultipleSuggestions),
+	precondition: ContextKeyExpr.and(SuggestContext.Visible),
 	handler: c => c.selectPrevSuggestion(),
 	kbOpts: {
 		weight: weight,
@@ -557,7 +557,7 @@ registerEditorCommand(new SuggestCommand({
 
 registerEditorCommand(new SuggestCommand({
 	id: 'selectFirstSuggestion',
-	precondition: ContextKeyExpr.and(SuggestContext.Visible, SuggestContext.MultipleSuggestions),
+	precondition: ContextKeyExpr.and(SuggestContext.Visible),
 	handler: c => c.selectFirstSuggestion()
 }));
 

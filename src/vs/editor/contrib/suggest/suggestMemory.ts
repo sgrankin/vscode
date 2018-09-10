@@ -204,7 +204,7 @@ export class PrefixMemory extends Memory {
 	}
 }
 
-export type MemMode = 'first' | 'recentlyUsed' | 'recentlyUsedByPrefix';
+export type MemMode = 'off' | 'first' | 'recentlyUsed' | 'recentlyUsedByPrefix';
 
 export class SuggestMemoryService extends Disposable implements ISuggestMemoryService {
 

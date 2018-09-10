@@ -2972,6 +2972,11 @@ declare namespace monaco.editor {
 		 */
 		acceptSuggestionOnCommitCharacter?: boolean;
 		/**
+		 * Extra suggestion characters.
+		 * Defaults to ' .,()<>{}[];:+*-/=!?_\\|"\'`'.
+		 */
+		extraSuggestionCommitCharacters?: string;
+		/**
 		 * Enable snippet suggestions. Default to 'true'.
 		 */
 		snippetSuggestions?: 'top' | 'bottom' | 'inline' | 'none';
@@ -2990,7 +2995,7 @@ declare namespace monaco.editor {
 		/**
 		 * The history mode for suggestions.
 		 */
-		suggestSelection?: 'first' | 'recentlyUsed' | 'recentlyUsedByPrefix';
+		suggestSelection?: 'off' | 'first' | 'recentlyUsed' | 'recentlyUsedByPrefix';
 		/**
 		 * The font size for the suggest widget.
 		 * Defaults to the editor font size.
@@ -3357,8 +3362,9 @@ declare namespace monaco.editor {
 		readonly suggestOnTriggerCharacters: boolean;
 		readonly acceptSuggestionOnEnter: 'on' | 'smart' | 'off';
 		readonly acceptSuggestionOnCommitCharacter: boolean;
+		readonly extraSuggestionCommitCharacters: string;
 		readonly wordBasedSuggestions: boolean;
-		readonly suggestSelection: 'first' | 'recentlyUsed' | 'recentlyUsedByPrefix';
+		readonly suggestSelection: 'off' | 'first' | 'recentlyUsed' | 'recentlyUsedByPrefix';
 		readonly suggestFontSize: number;
 		readonly suggestLineHeight: number;
 		readonly tabCompletion: 'on' | 'off' | 'onlySnippets';

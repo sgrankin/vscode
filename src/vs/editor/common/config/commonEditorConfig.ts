@@ -617,6 +617,11 @@ const editorConfiguration: IConfigurationNode = {
 			'default': EDITOR_DEFAULTS.contribInfo.acceptSuggestionOnCommitCharacter,
 			'markdownDescription': nls.localize('acceptSuggestionOnCommitCharacter', "Controls whether suggestions should be accepted on commit characters. For example, in JavaScript, the semi-colon (`;`) can be a commit character that accepts a suggestion and types that character.")
 		},
+		'editor.extraSuggestionCommitCharacters': {
+			'type': 'string',
+			'default': EDITOR_DEFAULTS.contribInfo.extraSuggestionCommitCharacters,
+			'markdownDescription': nls.localize('extraSuggestionCommitCharacters', "Allows adding extra commit characters for #editor.acceptSuggestionOnCommitCharacter, for example when the language plugin does not provide any.")
+		},
 		'editor.snippetSuggestions': {
 			'type': 'string',
 			'enum': ['top', 'bottom', 'inline', 'none'],
@@ -646,8 +651,9 @@ const editorConfiguration: IConfigurationNode = {
 		},
 		'editor.suggestSelection': {
 			'type': 'string',
-			'enum': ['first', 'recentlyUsed', 'recentlyUsedByPrefix'],
+			'enum': ['off', 'first', 'recentlyUsed', 'recentlyUsedByPrefix'],
 			'markdownEnumDescriptions': [
+				nls.localize('suggestSelection.off', "Don't automatically select a suggestion. Allows not accepting suggestions when `#editor.acceptSuggestionOnCommitCharacter` is set."),
 				nls.localize('suggestSelection.first', "Always select the first suggestion."),
 				nls.localize('suggestSelection.recentlyUsed', "Select recent suggestions unless further typing selects one, e.g. `console.| -> console.log` because `log` has been completed recently."),
 				nls.localize('suggestSelection.recentlyUsedByPrefix', "Select suggestions based on previous prefixes that have completed those suggestions, e.g. `co -> console` and `con -> const`."),

@@ -814,7 +814,10 @@ export class SuggestWidget implements IContentWidget, IListVirtualDelegate<Compl
 			}
 
 			this.list.reveal(selectionIndex, 0);
-			this.list.setFocus([selectionIndex]);
+
+			if (this.editor.getConfiguration().contribInfo.suggestSelection !== 'off') {
+				this.list.setFocus([selectionIndex]);
+			}
 
 			// Reset focus border
 			if (this.detailsBorderColor) {

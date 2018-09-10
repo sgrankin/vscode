@@ -3,7 +3,6 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { isNonEmptyArray } from 'vs/base/common/arrays';
 import { DisposableStore } from 'vs/base/common/lifecycle';
 import { ICodeEditor } from 'vs/editor/browser/editorBrowser';
 import { ISelectedSuggestion, SuggestWidget } from './suggestWidget';
@@ -20,8 +19,8 @@ export class CommitCharacterController {
 
 	constructor(editor: ICodeEditor, widget: SuggestWidget, accept: (selected: ISelectedSuggestion) => any) {
 
-		this._disposables.add(widget.onDidShow(() => this._onItem(widget.getFocusedItem())));
-		this._disposables.add(widget.onDidFocus(this._onItem, this));
+		this._disposables.add(widget.onDidShow(() => this._onItem(editor, widget.getFocusedItem())));
+		this._disposables.add(widget.onDidFocus((item) => this._onItem(editor, item), this));
 		this._disposables.add(widget.onDidHide(this.reset, this));
 
 		this._disposables.add(editor.onWillType(text => {
@@ -34,9 +33,8 @@ export class CommitCharacterController {
 		}));
 	}
 
-	private _onItem(selected: ISelectedSuggestion | undefined): void {
-		if (!selected || !isNonEmptyArray(selected.item.completion.commitCharacters)) {
-			// no item or no commit characters
+	private _onItem(editor: ICodeEditor, selected: ISelectedSuggestion | undefined): void {
+		if (!selected) {
 			this.reset();
 			return;
 		}
@@ -48,7 +46,12 @@ export class CommitCharacterController {
 
 		// keep item and its commit characters
 		const acceptCharacters = new CharacterSet();
-		for (const ch of selected.item.completion.commitCharacters) {
+		acceptCharacters.add(' '.charCodeAt(0));
+		acceptCharacters.add('.'.charCodeAt(0));
+		for (const ch of editor.getConfiguration().contribInfo.extraSuggestionCommitCharacters) {
+			acceptCharacters.add(ch.charCodeAt(0));
+		}
+		for (const ch of selected.item.completion.commitCharacters || []) {
 			if (ch.length > 0) {
 				acceptCharacters.add(ch.charCodeAt(0));
 			}
