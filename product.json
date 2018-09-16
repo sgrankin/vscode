@@ -1,26 +1,35 @@
 {
-	"nameShort": "Code - OSS",
-	"nameLong": "Code - OSS",
-	"applicationName": "code-oss",
-	"dataFolderName": ".vscode-oss",
-	"win32MutexName": "vscodeoss",
+	"nameShort": "Code",
+	"nameLong": "Visual Studio Code",
+	"applicationName": "code",
+	"dataFolderName": ".vscode",
+	"win32MutexName": "vscode",
 	"licenseName": "MIT",
 	"licenseUrl": "https://github.com/Microsoft/vscode/blob/master/LICENSE.txt",
-	"win32DirName": "Microsoft Code OSS",
-	"win32NameVersion": "Microsoft Code OSS",
-	"win32RegValueName": "CodeOSS",
-	"win32AppId": "{{E34003BB-9E10-4501-8C11-BE3FAA83F23F}",
-	"win32x64AppId": "{{D77B7E06-80BA-4137-BCF4-654B95CCEBC5}",
-	"win32UserAppId": "{{C6065F05-9603-4FC4-8101-B9781A25D88E}",
-	"win32x64UserAppId": "{{C6065F05-9603-4FC4-8101-B9781A25D88E}",
-	"win32AppUserModelId": "Microsoft.CodeOSS",
-	"win32ShellNameShort": "C&ode - OSS",
-	"darwinBundleIdentifier": "com.visualstudio.code.oss",
+	"win32DirName": "Microsoft VS Code",
+	"win32NameVersion": "Microsoft Visual Studio Code",
+	"win32RegValueName": "VSCode",
+	"win32AppId": "{{F8A2A208-72B3-4D61-95FC-8A65D340689B}",
+	"win32x64AppId": "{{EA457B21-F73E-494C-ACAB-524FDE069978}",
+	"win32UserAppId": "{{D628A17A-9713-46BF-8D57-E671B46A741E}",
+	"win32x64UserAppId": "{{771FD6B0-FA20-440A-A002-3B3BAC16DC50}",
+	"win32AppUserModelId": "Microsoft.VisualStudioCode",
+	"win32ShellNameShort": "Code",
+	"darwinBundleIdentifier": "com.microsoft.VSCode",
 	"linuxIconName": "com.visualstudio.code.oss",
 	"licenseFileName": "LICENSE.txt",
 	"reportIssueUrl": "https://github.com/Microsoft/vscode/issues/new",
-	"urlProtocol": "code-oss",
+	"urlProtocol": "vscode",
 	"extensionAllowedProposedApi": [
-		"ms-vscode.references-view"
-	]
+		"ms-vscode.references-view",
+		"ms-vsliveshare.vsliveshare",
+		"GitHub.vscode-pull-request-github",
+		"Microsoft.vscode-nmake-tools"
+	],
+	"extensionsGallery": {
+		"serviceUrl": "https://marketplace.visualstudio.com/_apis/public/gallery",
+		"cacheUrl": "https://vscode.blob.core.windows.net/gallery/index",
+		"itemUrl": "https://marketplace.visualstudio.com/items"
+	},
+	"darwinExecutable": "VSCode"
 }
